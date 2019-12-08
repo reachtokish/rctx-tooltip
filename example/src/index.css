@@ -1,5 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700&display=swap');
+
+* {
+	  font-family: 'Work Sans', sans-serif;
+	  box-sizing: border-box;
+}
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+}
+button {
+  background-color: #388fda;
+  color: #fff;
+  font-size: 16px;
+  padding: 100px 100px;
+  border: 0;
+  border-radius: 4px;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 500;
+}
+img {
+	max-width: 100%;
+}
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+.container:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+.logo {
+	margin: 0;
+}
+header {
+	padding: 20px 0;
+    border-bottom: solid 1px #e6e6e6;
+}
+.pt_20 {
+	padding-top: 20px;
+}
+.pb_20 {
+	padding-bottom: 20px;
+}
+.left_grid {
+	width: 50%;
+	float: left;
+}
+.right_grid {
+	max-width: 50%;
+    float: right;
+    min-width: 30%;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bottom_border {
+	border-bottom: solid 1px #e6e6e6;
+}
+.my-tooltip-container {
+	border: solid 2px #f00;
+}
+.my-tooltip-container .my-tooltip {
+	position: absolute;
+    pointer-events: none;
+    width: 300px;
+    background: #f00;
+    padding: 15px;
+	border-radius: 6px;
+}
+.my-tooltip-container .my-tooltip:after {
+    border-color: #f00 transparent transparent transparent;
+    left: 0;
+    bottom: -14px;
+    right: 0;
+    width: 0;
+    margin: 0 auto;
 }
