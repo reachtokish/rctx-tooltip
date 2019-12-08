@@ -125,7 +125,7 @@ export default class RCTXTooltip extends Component {
 	}
 
 	componentDidMount() {
-		const { isVisible, eventOff } = this.props;
+		const { isVisible, eventOff, hideTooltip } = this.props;
 		if(isVisible) {
 			this.setTooltipPosition();
 		}
@@ -143,7 +143,10 @@ export default class RCTXTooltip extends Component {
 				})
 			}
 		}
-		this.props.hideTooltip(this.hideTooltip);
+
+		if(hideTooltip) {
+			hideTooltip(this.hideTooltip);
+		}
 	}
 
 	componentWillUnmount() {
