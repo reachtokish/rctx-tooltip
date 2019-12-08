@@ -27,7 +27,7 @@ export default class RCTXTooltip extends Component {
 		isVisible: false,
 		position: "top left",
 		animation: fade,
-		event: "click"
+		event: "hover"
 	}
 
 	constructor(props) {
