@@ -1,4 +1,4 @@
-# react-toastbox
+# rctx-tooltip
 
 Tooltip package extensively for react library
 
