@@ -13,6 +13,7 @@ import EventOff from './components/eventOff';
 import VisibleByDefault from './components/visibleByDefault';
 import DelayHide from './components/delayHide';
 import DelayShow from './components/delayShow';
+import ShowHideManually from './components/showHideManually';
 
 export default class App extends Component {
 	render () {
@@ -33,6 +34,7 @@ export default class App extends Component {
 				<FadeAnimation />
 				<FocusEvent />
 				<ClickEvent />
+				<ShowHideManually />
 				<AddClass />
 				<OnHidden />
 				<OnShown />

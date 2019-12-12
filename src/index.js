@@ -17,9 +17,12 @@ export default class RCTXTooltip extends Component {
 		delayShow: PropTypes.number,
 		delayShow: PropTypes.number,
 		onHidden: PropTypes.func,
+		onShown: PropTypes.func,
 		eventOff: PropTypes.string,
 		tooltipClass: PropTypes.string,
-		tooltipContainerClass: PropTypes.string
+		tooltipContainerClass: PropTypes.string,
+		scrollToHide: PropTypes.bool,
+		resizeToHide: PropTypes.bool
 	}
 
 	static defaultProps = {
@@ -27,7 +30,9 @@ export default class RCTXTooltip extends Component {
 		isVisible: false,
 		position: "top left",
 		animation: fade,
-		event: "hover"
+		event: "hover",
+		scrollToHide: true,
+		resizeToHide: true
 	}
 
 	constructor(props) {
@@ -121,18 +126,20 @@ export default class RCTXTooltip extends Component {
 		})
 	}
 
-	getAlert() {
-		alert('clicked');
-	}
-
 	componentDidMount() {
-		const { isVisible, eventOff, hideTooltip } = this.props;
+		const { isVisible, eventOff, hideTooltip, scrollToHide, resizeToHide } = this.props;
 		if(isVisible) {
 			this.setTooltipPosition();
 		}
 		this.setAnimation();
 		
-		window.addEventListener("wheel", this.hideTooltip);
+		if(scrollToHide) {
+			window.addEventListener("wheel", this.hideTooltip);
+		}
+
+		if(resizeToHide) {
+			window.addEventListener("resize", this.hideTooltip);
+		}
 
 		if(eventOff) {
 			if(eventOff === "click") {
@@ -154,7 +161,13 @@ export default class RCTXTooltip extends Component {
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener("wheel", this.hideTooltip);
+		if(scrollToHide) {
+			window.removeEventListener("wheel", this.hideTooltip);
+		}
+
+		if(resizeToHide) {
+			window.removeEventListener("resize", this.hideTooltip);
+		}
 	}
 
   	render() {

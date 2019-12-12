@@ -97,6 +97,18 @@ Checkout the example <a href="https://reachtokish.github.io/rctx-tooltip/" targe
       <td>On double click only close the tooltip</td>
     </tr>
     <tr>
+      <td>scrollToHide</td>
+      <td>Boolean</td>
+      <td>true / false<br />Default: true</td>
+      <td>On window scroll hides the tooltip</td>
+    </tr>
+    <tr>
+      <td>resizeToHide</td>
+      <td>Boolean</td>
+      <td>true / false<br />Default: true</td>
+      <td>On window resize hides the tooltip</td>
+    </tr>
+    <tr>
       <td>onHidden</td>
       <td>Function</td>
       <td>onHidden={() => console.log("I am hidden!!")}</td>

@@ -30,6 +30,7 @@ export default class VisibleByDefault extends Component {
                                 content={<div>I am here!!</div>}
                                 position="right+8 center"
                                 isVisible={true}
+                                scrollToHide={false}
                             >
                                 <button className="example_btn">Show me the tooltip!</button>
                             </RCTXTooltip>

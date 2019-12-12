@@ -18,9 +18,13 @@ pre {
     margin: 0;
     font-size: 14px;
     line-height: 20px;
+    white-space: pre-wrap;
 }
 button {
     cursor: pointer;
+}
+:focus {
+    outline: none;
 }
 .container {
 	max-width: 1000px;
@@ -44,6 +48,15 @@ header {
 }
 .pb_20 {
 	padding-bottom: 20px;
+}
+.ml-5 {
+    margin-left: 5px;
+}
+.mr-5 {
+    margin-right: 5px;
+}
+.mt-10 {
+    margin-top: 10px;
 }
 .bottom_border {
 	border-bottom: solid 1px #e6e6e6;
@@ -87,4 +100,18 @@ header {
 }
 .full_doc a {
     color: blue;
+}
+.small_btn {
+    font-size: 12px;
+    padding: 4px 10px;
+    border: 0;
+    border-radius: 4px;
+}
+.small_btn.success {
+    background-color: green;
+    color: #fff;
+}
+.small_btn.alert {
+    background-color: red;
+    color: #fff;
 }
