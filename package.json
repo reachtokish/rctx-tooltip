@@ -60,5 +60,12 @@
   ],
   "dependencies": {
     "react-transition-group": "^4.3.0"
-  }
+  },
+  "keywords": [
+    "react",
+    "tooltip",
+    "react-tooltip",
+    "rctx",
+    "react-component"
+  ]
 }
