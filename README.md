@@ -78,18 +78,6 @@ class Example extends Component {
       <td>Show tooltip in delay time mentioned</td>
     </tr>
     <tr>
-      <td>onHidden</td>
-      <td>Function</td>
-      <td>onHidden={() => console.log("I am hidden!!")}</td>
-      <td>Invokes after tooltip gets hidden</td>
-    </tr>
-    <tr>
-      <td>onShown</td>
-      <td>Function</td>
-      <td>onShown={() => console.log("I am visible!!")}</td>
-      <td>Invokes after tooltip gets visible</td>
-    </tr>
-    <tr>
       <td>tooltipClass</td>
       <td>String</td>
       <td>Any string</td>
@@ -100,6 +88,24 @@ class Example extends Component {
       <td>String</td>
       <td>Any string</td>
       <td>Add class in the tooltip container popup</td>
+    </tr>
+    <tr>
+      <td>eventOff</td>
+      <td>String</td>
+      <td>"dblclick"</td>
+      <td>On double click only close the tooltip</td>
+    </tr>
+    <tr>
+      <td>onHidden</td>
+      <td>Function</td>
+      <td>onHidden={() => console.log("I am hidden!!")}</td>
+      <td>Invokes after tooltip gets hidden</td>
+    </tr>
+    <tr>
+      <td>onShown</td>
+      <td>Function</td>
+      <td>onShown={() => console.log("I am visible!!")}</td>
+      <td>Invokes after tooltip gets visible</td>
     </tr>
   </tbody>
 </table>
