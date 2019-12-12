@@ -4,7 +4,7 @@ import RCTXTooltip from 'rctx-tooltip';
 const Code = `<RCTXTooltip
     content={<div>I am here!!</div>}
     position="bottom+8 left"
-    delayShow={2000}
+    delayShow={1000}
 >
     <button className="example_btn">Show me the tooltip!</button>
 </RCTXTooltip>
@@ -29,7 +29,7 @@ export default class DelayShow extends Component {
                             <RCTXTooltip
                                 content={<div>I am here!!</div>}
                                 position="bottom+8 left"
-                                delayShow={2000}
+                                delayShow={1000}
                             >
                                 <button className="example_btn">Show me the tooltip!</button>
                             </RCTXTooltip>

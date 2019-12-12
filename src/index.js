@@ -14,7 +14,7 @@ export default class RCTXTooltip extends Component {
 		position: PropTypes.string,
 		animation: PropTypes.any,
 		event: PropTypes.string,
-		delayHide: PropTypes.number,
+		delayShow: PropTypes.number,
 		delayShow: PropTypes.number,
 		onHidden: PropTypes.func,
 		eventOff: PropTypes.string,
@@ -38,7 +38,8 @@ export default class RCTXTooltip extends Component {
 				top: "0px",
 				left: "0px"
 			},
-			tooltipClass: ""
+			tooltipClass: "",
+			animationTimeout: 200
 		};
 		
 		this.showTooltip = this.showTooltip.bind(this);
@@ -50,17 +51,17 @@ export default class RCTXTooltip extends Component {
 	}
 
 	showTooltip() {
-		const { delayHide, onShown } = this.props;
-		const { isVisible } = this.state;
-		if(delayHide && !isNaN(delayHide)) {
+		const { delayShow, onShown } = this.props;
+		const { isVisible, animationTimeout } = this.state;
+		if(delayShow && !isNaN(delayShow)) {
 			setTimeout(() => {
 				this.setState({
 					isVisible: true
 				}, () => {
 					this.setTooltipPosition();
-					onShown ? onShown() : null;
+					onShown ? setTimeout(() => onShown(), animationTimeout) : null;
 				})
-			}, delayHide)
+			}, delayShow)
 			return;
 		}
 		if(!isVisible) {
@@ -68,26 +69,26 @@ export default class RCTXTooltip extends Component {
 				isVisible: true
 			}, () => {
 				this.setTooltipPosition();
-				onShown ? onShown() : null;
+				onShown ? setTimeout(() => onShown(), animationTimeout) : null;
 			})
 		}
 	}
 
 	hideTooltip() {
 		const { delayHide, onHidden } = this.props;
-		const { isVisible } = this.state;
+		const { isVisible, animationTimeout } = this.state;
 		if(delayHide && !isNaN(delayHide)) {
 			setTimeout(() => {
 				this.setState({
 					isVisible: false
-				}, () => onHidden ? onHidden() : null)
+				}, () => onHidden ? setTimeout(() => onHidden(), animationTimeout) : null)
 			}, delayHide)
 			return;
 		}
 		if(isVisible) {
 			this.setState({
 				isVisible: false
-			}, () => onHidden ? onHidden() : null)
+			}, () => onHidden ? setTimeout(() => onHidden(), animationTimeout) : null)
 		}
 	}
 
@@ -130,7 +131,9 @@ export default class RCTXTooltip extends Component {
 			this.setTooltipPosition();
 		}
 		this.setAnimation();
-		window.addEventListener('scroll', this.hideTooltip, true);
+		
+		window.addEventListener("wheel", this.hideTooltip);
+
 		if(eventOff) {
 			if(eventOff === "click") {
 				this.tooltipContainerRef.current.addEventListener("click", (e) => {
@@ -147,15 +150,16 @@ export default class RCTXTooltip extends Component {
 		if(hideTooltip) {
 			hideTooltip(this.hideTooltip);
 		}
+
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('scroll', this.hideTooltip);
+		window.removeEventListener("wheel", this.hideTooltip);
 	}
 
   	render() {
 		const { content, event, tooltipClass: tooltipBoxClass, tooltipContainerClass } = this.props;
-		const { isVisible, position: {top, left}, animation, tooltipClass } = this.state;
+		const { isVisible, position: {top, left}, animation, tooltipClass, animationTimeout } = this.state;
 		const eventList = event.split(" ");
 		return (
 			<div
@@ -173,7 +177,7 @@ export default class RCTXTooltip extends Component {
 				<CSSTransition
 					in={isVisible}
 					classNames={animation}
-					timeout={200}
+					timeout={animationTimeout}
 					unmountOnExit
 					appear
 				>

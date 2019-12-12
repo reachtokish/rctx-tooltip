@@ -10,6 +10,9 @@ import AddClass from './components/addClass';
 import OnHidden from './components/onHidden';
 import OnShown from './components/onShown';
 import EventOff from './components/eventOff';
+import VisibleByDefault from './components/visibleByDefault';
+import DelayHide from './components/delayHide';
+import DelayShow from './components/delayShow';
 
 export default class App extends Component {
 	render () {
@@ -22,8 +25,11 @@ export default class App extends Component {
 				</header>
 				<SampleTooltip />
 				<Position />
+				<VisibleByDefault />
 				<PositionOffset />
 				<RightCenter />
+				<DelayHide />
+				<DelayShow />
 				<FadeAnimation />
 				<FocusEvent />
 				<ClickEvent />

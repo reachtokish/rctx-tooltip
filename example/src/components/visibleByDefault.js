@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import RCTXTooltip from 'rctx-tooltip';
 
 const Code = `<RCTXTooltip
-    isVisible={true}
     content={<div>I am here!!</div>}
+    position="right+8 center"
+    isVisible={true}
 >
     <button className="example_btn">Show me the tooltip!</button>
 </RCTXTooltip>
@@ -26,8 +27,9 @@ export default class VisibleByDefault extends Component {
                         </div>
                         <div className="example_block">
                             <RCTXTooltip
-                                isVisible={true}
                                 content={<div>I am here!!</div>}
+                                position="right+8 center"
+                                isVisible={true}
                             >
                                 <button className="example_btn">Show me the tooltip!</button>
                             </RCTXTooltip>
