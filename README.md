@@ -123,5 +123,8 @@ Checkout the example <a href="https://reachtokish.github.io/rctx-tooltip/" targe
   </tbody>
 </table>
 
+## Contributing 🙏
+We will welcome any kind of contribution, small to big, suggestion to bug fixing or even collaborating. You can fork the repo and then make some changes and make a pull request. We will review your code and merge it 👏.
+
 ## License
 MIT © [reachtokish](https://github.com/reachtokish)

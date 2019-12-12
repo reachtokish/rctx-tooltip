@@ -15,6 +15,8 @@ import DelayHide from './components/delayHide';
 import DelayShow from './components/delayShow';
 import ShowHideManually from './components/showHideManually';
 
+import github_ribbon from './github-ribbon.png';
+
 export default class App extends Component {
 	render () {
 		return (
@@ -39,6 +41,9 @@ export default class App extends Component {
 				<OnHidden />
 				<OnShown />
 				<EventOff />
+				<a href="https://github.com/reachtokish/rctx-tooltip" className="github_ribbon">
+					<img src={github_ribbon} alt="ribbon" />
+				</a>
 			</main>
 		)
 	}

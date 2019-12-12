@@ -115,3 +115,12 @@ header {
     background-color: red;
     color: #fff;
 }
+.github_ribbon {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 140px;
+}
+.github_ribbon img {
+    display: block;
+}
