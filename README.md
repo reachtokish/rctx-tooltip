@@ -17,8 +17,8 @@ class Example extends Component {
   render () {
     return (
       <RCTXTooltip>
-	  	  <button>Hover over me</button>
-	    </RCTXTooltip>
+        <button>Hover over me</button>
+      </RCTXTooltip>
     )
   }
 }
