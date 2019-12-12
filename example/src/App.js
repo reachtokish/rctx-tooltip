@@ -1,109 +1,37 @@
-import React, { Component } from 'react'
-import RCTXTooltip from 'rctx-tooltip';
-import img from './image.jpeg';
-
-const firstExample = `<RCTXTooltip
-	content={<div>I am a tooltip!!!</div>}
->
-	<button>Click Me</button>
-</RCTXTooltip>
-`;
-
-const secondExample = `<RCTXTooltip
-	content={<div>I am a tooltip!!!</div>}
-	position="top+10 center"
->
-	<button>Click Me</button>
-</RCTXTooltip>
-`;
+import React, { Component } from 'react';
+import SampleTooltip from './components/sampleTooltip';
+import Position from './components/position';
+import PositionOffset from './components/positionOffset';
+import RightCenter from './components/rightCenter';
+import FadeAnimation from './components/animationFade';
+import FocusEvent from './components/focusEvent';
+import ClickEvent from './components/clickEvent';
+import AddClass from './components/addClass';
+import OnHidden from './components/onHidden';
+import OnShown from './components/onShown';
+import EventOff from './components/eventOff';
 
 export default class App extends Component {
 	render () {
 		return (
-			<div
-				style={{
-					// float: "right",
-					margin: "0 2000px"
-				}}
-			>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<RCTXTooltip
-					content={<div><img src={img} alt="" /></div>}
-					position="bottom+10 center"
-					animation="fade"
-					event="click"
-					eventOff="dblclick"
-					hideTooltip={hide => this.hideTooltip = hide}
-					tooltipClass="my-tooltip"
-					tooltipContainerClass="my-tooltip-container"
-				>
-					<button>Hey</button>
-				</RCTXTooltip>
-				{/* <button onClick={() => this.hideTooltip()}>Click</button> */}
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-				<p>Space</p>
-			</div>
+			<main>
+				<header>
+					<div className="container">
+						<h2 className="logo">RCTXTooltip <span className="full_doc">(<a href="https://github.com/reachtokish/rctx-tooltip" target="_blank" rel="noopener noreferrer">Full documentation</a>)</span></h2>
+					</div>
+				</header>
+				<SampleTooltip />
+				<Position />
+				<PositionOffset />
+				<RightCenter />
+				<FadeAnimation />
+				<FocusEvent />
+				<ClickEvent />
+				<AddClass />
+				<OnHidden />
+				<OnShown />
+				<EventOff />
+			</main>
 		)
 	}
 }

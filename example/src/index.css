@@ -8,19 +8,19 @@ body {
 	margin: 0;
 	padding: 0;
 }
-button {
-  background-color: #388fda;
-  color: #fff;
-  font-size: 16px;
-  padding: 100px 100px;
-  border: 0;
-  border-radius: 4px;
-}
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 500;
 }
 img {
 	max-width: 100%;
+}
+pre {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+}
+button {
+    cursor: pointer;
 }
 .container {
 	max-width: 1000px;
@@ -32,7 +32,8 @@ img {
 	display: block;
 }
 .logo {
-	margin: 0;
+    margin: 0;
+    font-size: 34px;
 }
 header {
 	padding: 20px 0;
@@ -44,38 +45,46 @@ header {
 .pb_20 {
 	padding-bottom: 20px;
 }
-.left_grid {
-	width: 50%;
-	float: left;
+.bottom_border {
+	border-bottom: solid 1px #e6e6e6;
 }
-.right_grid {
-	max-width: 50%;
-    float: right;
-    min-width: 30%;
-    min-height: 220px;
+.section_title {
+    margin: 0 0 15px;
+}
+.example_container {
+    background-color: #f1f1f1;
+    display: flex;
+}
+.code_block {
+    width: 60%;
+    margin: 0;
+    padding: 30px;
+    border-right: solid 1px #ddd;
+}
+.example_block {
+    width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.bottom_border {
-	border-bottom: solid 1px #e6e6e6;
+.example_body {
+    padding: 15px 0;
+    margin: 15px 0;
 }
-.my-tooltip-container {
-	border: solid 2px #f00;
+.example_btn {
+    background-color: #4ca8cc;
+    padding: 10px 15px;
+    border: 0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #fff;
 }
-.my-tooltip-container .my-tooltip {
-	position: absolute;
-    pointer-events: none;
-    width: 300px;
-    background: #f00;
-    padding: 15px;
-	border-radius: 6px;
+.red {
+    color: red;;
 }
-.my-tooltip-container .my-tooltip:after {
-    border-color: #f00 transparent transparent transparent;
-    left: 0;
-    bottom: -14px;
-    right: 0;
-    width: 0;
-    margin: 0 auto;
+.full_doc {
+    font-size: 16px;
+}
+.full_doc a {
+    color: blue;
 }

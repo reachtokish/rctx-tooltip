@@ -25,6 +25,7 @@ class Example extends Component {
 ```
 
 ## Options
+Checkout the example <a href="https://reachtokish.github.io/rctx-tooltip/" target="_blank">demo</a>
 <table class="table table-bordered table-striped">
   <thead>
   <tr>
