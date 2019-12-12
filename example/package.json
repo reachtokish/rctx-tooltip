@@ -1,7 +1,7 @@
 {
   "name": "rctx-tooltip-example",
   "homepage": "https://reachtokish.github.io/rctx-tooltip",
-  "version": "0.0.0",
+  "version": "1.0.5",
   "license": "MIT",
   "private": true,
   "dependencies": {
