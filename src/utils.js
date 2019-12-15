@@ -1,10 +1,6 @@
 import ReactDOM from 'react-dom';
 
-export const tooltipPosition = (position, tooltip, tooltipContainer) => {
-    let tipPosition = {
-        top: -tooltipHeight,
-        left: "0px"
-    };
+export const tooltipPosition = (position, tooltip, tooltipContainer, appendTo) => {
     let { clientHeight:tooltipHeight, clientWidth:tooltipWidth } = tooltip;
     let { clientHeight:tooltipContainerHeight, clientWidth:tooltipContainerWidth } = tooltipContainer;
     let splitPosition = position.split(" ");
@@ -12,24 +8,31 @@ export const tooltipPosition = (position, tooltip, tooltipContainer) => {
 
     const tooltipContNode = ReactDOM.findDOMNode(tooltipContainer);
     const getClientRect = tooltipContNode.getBoundingClientRect();
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const windowInnerHeight = window.innerHeight;
     const windowInnerWidth = window.innerWidth;
 
-    let top = -tooltipHeight;
-    let right = tooltipContainerWidth - tooltipWidth;
-    let bottom = tooltipContainerHeight;
-    let left = 0;
+    const offsetTop = tooltipContNode.offsetTop;
+    const offsetLeft = tooltipContNode.offsetLeft;
 
-    let topPlus = val => -(tooltipHeight + val);
-    let rightPlus = val => (tooltipContainerWidth - tooltipWidth) - val;
-    let bottomPlus = val => tooltipContainerHeight + val;
-    let leftPlus = val => val;
+    let tipPosition = {
+        top: -tooltipHeight,
+        left: "0px"
+    };
 
-    let topCenter = -((tooltipWidth / 2) - (tooltipContainerWidth / 2));
-    let rightCenter = -((tooltipHeight / 2) - (tooltipContainerHeight / 2));
-    let bottomCenter = -((tooltipWidth / 2) - (tooltipContainerWidth / 2));
-    let leftCenter = -((tooltipHeight / 2) - (tooltipContainerHeight / 2));
+    let top = appendTo ? offsetTop - tooltipHeight : -tooltipHeight;
+    let right = appendTo ? offsetLeft + (tooltipContainerWidth - tooltipWidth) : tooltipContainerWidth - tooltipWidth;
+    let bottom = appendTo ? offsetTop + tooltipContainerHeight : tooltipContainerHeight;
+    let left = appendTo ? offsetLeft : 0;
+
+    let topPlus = val => appendTo ? offsetTop + (-(tooltipHeight + val)) : -(tooltipHeight + val);
+    let rightPlus = val => appendTo ? offsetLeft + ((tooltipContainerWidth - tooltipWidth) - val) : (tooltipContainerWidth - tooltipWidth) - val;
+    let bottomPlus = val => appendTo ? offsetTop + (tooltipContainerHeight + val) : tooltipContainerHeight + val;
+    let leftPlus = val => appendTo ? offsetLeft + val : val;
+
+    let topCenter = appendTo ? offsetLeft + (-((tooltipWidth / 2) - (tooltipContainerWidth / 2))) : -((tooltipWidth / 2) - (tooltipContainerWidth / 2));
+    let rightCenter = appendTo ? offsetTop + (-((tooltipHeight / 2) - (tooltipContainerHeight / 2))) : -((tooltipHeight / 2) - (tooltipContainerHeight / 2));
+    let bottomCenter = appendTo ? offsetLeft + (-((tooltipWidth / 2) - (tooltipContainerWidth / 2))) : -((tooltipWidth / 2) - (tooltipContainerWidth / 2));
+    let leftCenter = appendTo ? offsetTop + (-((tooltipHeight / 2) - (tooltipContainerHeight / 2))) : -((tooltipHeight / 2) - (tooltipContainerHeight / 2));
 
     if(position.includes("top")) {
         tipPosition.top = top;
@@ -48,11 +51,11 @@ export const tooltipPosition = (position, tooltip, tooltipContainer) => {
         tipClass[1] = "right";
         if(splitPosition.length > 0 && splitPosition[1] == "center") {
             tipPosition.top = rightCenter;
-            tipPosition.left = tooltipContainerWidth;
+            tipPosition.left = appendTo ? offsetLeft + tooltipContainerWidth : tooltipContainerWidth;
             tipClass[0] = "right";
             tipClass[1] = "center";
             if((getClientRect.right + tooltipWidth) >= windowInnerWidth) {
-                tipPosition.left = -tooltipWidth;
+                tipPosition.left = appendTo ? offsetLeft + (-tooltipWidth) : -tooltipWidth;
                 tipClass[0] = "left";
             }
         }
@@ -75,11 +78,11 @@ export const tooltipPosition = (position, tooltip, tooltipContainer) => {
         tipClass[1] = "left";
         if(splitPosition.length > 0 && splitPosition[1] == "center") {
             tipPosition.top = leftCenter;
-            tipPosition.left = -tooltipWidth;
+            tipPosition.left = appendTo ? offsetLeft + (-tooltipWidth) : -tooltipWidth;
             tipClass[0] = "left";
             tipClass[1] = "center";
             if(getClientRect.left <= tooltipWidth) {
-                tipPosition.left = tooltipContainerWidth;
+                tipPosition.left = appendTo ? offsetLeft + tooltipContainerWidth : tooltipContainerWidth;
                 tipClass[0] = "right";
             }
         }
@@ -108,11 +111,11 @@ export const tooltipPosition = (position, tooltip, tooltipContainer) => {
                 tipPosition.left = rightPlus(val);
                 tipClass[1] = "right";
                 if(splitPosition.length > 0 && splitPosition[1] == "center") {
-                    tipPosition.left = tooltipContainerWidth + val;
+                    tipPosition.left = appendTo ? offsetLeft + (tooltipContainerWidth + val) : tooltipContainerWidth + val;
                     tipClass[0] = "right";
                     tipClass[1] = "center";
                     if(((getClientRect.right + tooltipWidth) + val) >= windowInnerWidth) {
-                        tipPosition.left = -(tooltipWidth + val);
+                        tipPosition.left = appendTo ? offsetLeft + (-(tooltipWidth + val)) : -(tooltipWidth + val);
                         tipClass[0] = "left";
                     }
                 }
@@ -143,11 +146,11 @@ export const tooltipPosition = (position, tooltip, tooltipContainer) => {
                 tipPosition.left = leftPlus(val);
                 tipClass[1] = "left";
                 if(splitPosition.length > 0 && splitPosition[1] == "center") {
-                    tipPosition.left = -tooltipWidth;
+                    tipPosition.left = appendTo ? offsetLeft + (-tooltipWidth - val) : -tooltipWidth - val;
                     tipClass[0] = "left";
                     tipClass[1] = "center";
                     if((getClientRect.left - val) <= tooltipWidth) {
-                        tipPosition.left = tooltipContainerWidth + val;
+                        tipPosition.left = appendTo ? offsetLeft + (tooltipContainerWidth + val) : tooltipContainerWidth + val;
                         tipClass[0] = "right";
                     }
                 }

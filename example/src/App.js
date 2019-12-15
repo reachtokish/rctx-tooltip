@@ -14,6 +14,7 @@ import VisibleByDefault from './components/visibleByDefault';
 import DelayHide from './components/delayHide';
 import DelayShow from './components/delayShow';
 import ShowHideManually from './components/showHideManually';
+import AppendTo from './components/appendTo';
 
 import github_ribbon from './github-ribbon.png';
 
@@ -38,6 +39,7 @@ export default class App extends Component {
 				<ClickEvent />
 				<ShowHideManually />
 				<AddClass />
+				<AppendTo />
 				<OnHidden />
 				<OnShown />
 				<EventOff />

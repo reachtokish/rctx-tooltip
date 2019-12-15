@@ -1,10 +1,70 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import styles from './styles.css';
 import PropTypes from 'prop-types';
 import { tooltipPosition } from './utils';
 import { CSSTransition } from 'react-transition-group';
 import fade from './fade.module.css';
 import zoom from './zoom.module.css';
+
+const Tooltip = React.forwardRef((props, ref) => {
+	const { isVisible, animation, animationTimeout, top, left, content, tooltipBoxClass, tooltipClass } = props;
+	return (
+		<CSSTransition
+			in={isVisible}
+			classNames={animation}
+			timeout={animationTimeout}
+			unmountOnExit
+			appear
+		>
+			<div 
+				className={
+					styles.tooltip_box + " " + 
+					styles[tooltipClass] + 
+					(tooltipBoxClass ? " " + tooltipBoxClass : "")
+				}
+				style={{
+					top,
+					left
+				}}
+				ref={ref}
+			>
+				{content}
+			</div>
+		</CSSTransition>
+	)
+})
+
+const TooltipWithPortal = React.forwardRef((props, ref) => {
+	const { isVisible, animation, animationTimeout, top, left, content, tooltipBoxClass, tooltipClass, appendTo } = props;
+	const appendDom = document.querySelector(appendTo);
+	const bodyDom = document.querySelector("body");
+	return ReactDOM.createPortal(
+		<CSSTransition
+			in={isVisible}
+			classNames={animation}
+			timeout={animationTimeout}
+			unmountOnExit
+			appear
+		>
+			<div 
+				className={
+					styles.tooltip_box + " " + 
+					styles[tooltipClass] + 
+					(tooltipBoxClass ? " " + tooltipBoxClass : "")
+				}
+				style={{
+					top,
+					left
+				}}
+				ref={ref}
+			>
+				{content}
+			</div>
+		</CSSTransition>,
+		appendDom ? appendDom : bodyDom
+	)
+})
 
 export default class RCTXTooltip extends Component {
 
@@ -22,7 +82,8 @@ export default class RCTXTooltip extends Component {
 		tooltipClass: PropTypes.string,
 		tooltipContainerClass: PropTypes.string,
 		scrollToHide: PropTypes.bool,
-		resizeToHide: PropTypes.bool
+		resizeToHide: PropTypes.bool,
+		appendTo: PropTypes.string
 	}
 
 	static defaultProps = {
@@ -98,10 +159,10 @@ export default class RCTXTooltip extends Component {
 	}
 
 	setTooltipPosition() {
-		const { position } = this.props;
+		const { position, appendTo } = this.props;
 		const { current: tooltipCurrent } = this.tooltipRef;
 		const { current: tooltipContainerCurrent } = this.tooltipContainerRef;
-		const { tipPosition, tipArrowClass } = tooltipPosition(position, tooltipCurrent, tooltipContainerCurrent);
+		const { tipPosition, tipArrowClass } = tooltipPosition(position, tooltipCurrent, tooltipContainerCurrent, appendTo);
 		this.setState({
 			position: tipPosition,
 			tooltipClass: tipArrowClass
@@ -161,6 +222,7 @@ export default class RCTXTooltip extends Component {
 	}
 
 	componentWillUnmount() {
+		const { scrollToHide, resizeToHide } = this.props;
 		if(scrollToHide) {
 			window.removeEventListener("wheel", this.hideTooltip);
 		}
@@ -171,7 +233,7 @@ export default class RCTXTooltip extends Component {
 	}
 
   	render() {
-		const { content, event, tooltipClass: tooltipBoxClass, tooltipContainerClass } = this.props;
+		const { content, event, tooltipClass: tooltipBoxClass, tooltipContainerClass, appendTo } = this.props;
 		const { isVisible, position: {top, left}, animation, tooltipClass, animationTimeout } = this.state;
 		const eventList = event.split(" ");
 		return (
@@ -187,7 +249,31 @@ export default class RCTXTooltip extends Component {
 				onClick={eventList.includes("click") ? this.showTooltip : null}
 				ref={this.tooltipContainerRef}
 			>
-				<CSSTransition
+				{appendTo ? 
+					<TooltipWithPortal
+						content={content}
+						tooltipBoxClass={tooltipBoxClass}
+						isVisible={isVisible}
+						top={top}
+						left={left}
+						animation={animation}
+						tooltipClass={tooltipClass}
+						animationTimeout={animationTimeout}
+						appendTo={appendTo}
+						ref={this.tooltipRef}
+					/> : 
+					<Tooltip
+						content={content}
+						tooltipBoxClass={tooltipBoxClass}
+						isVisible={isVisible}
+						top={top}
+						left={left}
+						animation={animation}
+						tooltipClass={tooltipClass}
+						animationTimeout={animationTimeout}
+						ref={this.tooltipRef}
+					/>}
+				{/* <CSSTransition
 					in={isVisible}
 					classNames={animation}
 					timeout={animationTimeout}
@@ -208,7 +294,7 @@ export default class RCTXTooltip extends Component {
 					>
 						{content}
 					</div>
-				</CSSTransition>
+				</CSSTransition> */}
         		{this.props.children}
       		</div>
 		)

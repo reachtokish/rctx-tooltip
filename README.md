@@ -24,6 +24,15 @@ class Example extends Component {
 }
 ```
 
+## Key features
+- Accept string or html.
+- Inbuild animation like zoom or fade.
+- Position the tooltip like however you want. You can specify offset as well.
+- Add class to the tooltip or tooltip container element and style it however you want.
+- Bunch of events like onShown or onHidden.
+- Control scroll or resize hide.
+- Append the tooltip anywhere you want.
+
 ## Options
 Checkout the example <a href="https://reachtokish.github.io/rctx-tooltip/" target="_blank">demo</a>
 <table class="table table-bordered table-striped">
@@ -40,7 +49,7 @@ Checkout the example <a href="https://reachtokish.github.io/rctx-tooltip/" targe
       <td>content</td>
       <td>String or Html</td>
       <td>default String</td>
-      <td>Any kind of string or options</td>
+      <td>It takes String or Html as input</td>
     </tr>
     <tr>
       <td>isVisible</td>
@@ -107,6 +116,12 @@ Checkout the example <a href="https://reachtokish.github.io/rctx-tooltip/" targe
       <td>Boolean</td>
       <td>true / false<br />Default: true</td>
       <td>On window resize hides the tooltip</td>
+    </tr>
+    <tr>
+      <td>appendTo</td>
+      <td>String</td>
+      <td>"body" / ".your_class_wrap" / "#your_id_wrap"<br />Default: Enclosed element</td>
+      <td>Append tooltip inside the input element</td>
     </tr>
     <tr>
       <td>onHidden</td>
